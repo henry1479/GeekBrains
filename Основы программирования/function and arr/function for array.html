@@ -1,0 +1,80 @@
+<meta charset="utf-8">
+<script>
+	function sequence (n) {
+		var arr = [];
+		for(var i=1; i<=n; i++){
+			arr.push(i);
+		}
+		return arr;
+	}
+
+	var seq_1 = sequence(10);
+	document.write('Вывод функции по созданию массива последовательности чисел. Параметр равен 10: ' + seq_1 + '<br>');
+
+
+	function arraySummary(a){
+		var sum = 0;
+		for(i=0; i<a.length; i++){
+			sum = sum + a[i];
+		}
+		return sum;
+
+	}
+
+
+	var arrSum = arraySummary(seq_1);
+	document.write('Вывод функции по вычислению суммы чисел в массиве  чисел: ' + arrSum + '<br>');
+
+
+
+	function maximumArray(a){
+		var max = a[0];
+		for(i=1; i< a.length; i++){
+			if (max < a[i]){
+				max = a[i];
+			}
+		}
+		return max;
+	}
+
+
+	var maxArr = maximumArray(seq_1);
+	document.write('Вывод функции по вычислению максимума из чисел в массиве: ' + maxArr + '<br>');
+
+
+
+	function minimumArray(a){
+		var min = a[0];
+		for(i=1; i< a.length; i++){
+			if (min > a[i]){
+				min = a[i];
+			}
+		}
+		return min;
+	}
+
+
+
+	var minArr = minimumArray(seq_1);
+	document.write('Вывод функции по вычислению минимума из чисел в массиве: ' + minArr + '<br>');
+
+
+
+	function evenArray (a) {
+		var even = [];
+		for(i=0; i<a.length; i++) {
+			if(a[i] % 2 == 0) {
+				even.push(a[i]);
+			}
+		}
+		return even;
+	}
+
+
+	var evenArr = evenArray(seq_1);
+	document.write('Вывод функции по определению четных чисел в массиве: ' + evenArr + '<br>');
+
+		
+</script>
+
+

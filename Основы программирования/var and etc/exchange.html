@@ -1,0 +1,18 @@
+<meta charset="utf-8">
+
+<script type="text/javascript">
+	var dollar = 75;
+	var euro = 91;
+	var ruble = prompt('Сколько рублей вы хотите сконвертировать?');
+
+	ruble = parseInt(ruble);
+
+	var convertDollar = ruble / dollar;
+	var convertEuro = ruble / euro;
+
+	alert('Вы сможете приобрести ' + Math.round(convertDollar * 100) / 100 + ' долларов');
+	alert('Вы сможете приобрести ' + Math.round(convertEuro * 100) / 100  + ' евро');
+	
+
+
+</script>

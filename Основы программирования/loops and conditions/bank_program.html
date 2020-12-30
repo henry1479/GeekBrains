@@ -1,0 +1,16 @@
+<meta charset="utf-8">
+<script>
+	alert("Вас приветсвует программа расчета ежегодной суммы банковского вклада!");
+	var deposit = +prompt('Введите сумму вклада в рублях:');
+	var percentage = +prompt('Введите годовые проценты:');
+	var benefit = 0;
+
+	document.write('Сумма вклада: ' + deposit + ' р. <br> Годовые проценты: ' + percentage
+					+ '<br>');
+
+	for (var i=0; i<5; i++){
+		benefit = deposit / 100 * percentage;
+		deposit = deposit + benefit;
+		document.write((i+1) + ' год размер вклада составит: ' + deposit.toFixed(2) + ' руб. <br>');
+	}
+</script>

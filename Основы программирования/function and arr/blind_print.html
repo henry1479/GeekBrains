@@ -1,0 +1,49 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+	function getRandomNumber(max) {
+		return Math.round(Math.random() * max);
+	}
+	
+	function generateText(letters, length){
+		var text = '';
+		for (var i = 0; i < length; i++) {
+			var n = getRandomNumber(letters.length - 1);
+			text = text + letters[n];
+		}
+		return text;
+	}
+
+	var level = 1;// перменная уровня программы
+
+	alert("Вас приветствуе программа по обучению слепой печати");
+	
+	while(true){
+		alert("Поставьте мизинец левой руки на букву Ф, безымянный палец - на Ы, средний - на В, указательный - на А. Мизинец правой руки на букву Ж, безымянный палец - на Д, средний - на Л, указательный - на O.Запомните расположение пальцев. \n Теперь неспеша набирайте текст. Постарайтесь не смотреть на клавиатуру.");
+		//проверка уровня и генерирование набора букв в зависисмости от него 
+		if (level == 1){
+			var text = generateText(['ф', 'а'], 10);
+		} else if (level == 2){
+			text = generateText(['ы', 'в'], 10);
+		} else {
+			text = generateText(['о', 'ж'], 10);
+		} 
+
+
+		var userText = prompt(text);
+		if (userText == text) {
+			level++;//если все верно, то уровень увеличивается на единицу
+			// если уровень не существует, то осуществляется выход из цикла
+			if(level == 4){
+				alert('Вы хорошо поработали!');
+				break;
+			} else {
+			alert('Все верно! Вы переходите на ' + level + ' уровень!'); 
+			}
+		} else {
+			alert('Вы ошиблись. Попробуйте еще раз.');
+	 	}
+	}
+
+	
+</script>

@@ -1,0 +1,46 @@
+
+
+<script>
+	var answer = parseInt(Math.random() * 100);
+	var attempt = 1; 
+	var player_1 = prompt('Игрок 1, введите ваше имя.'); // первый игрок
+	var player_2 = prompt('Игрок 2, введите ваше имя.'); // второй игрок
+	var player = player_2; // флаг действующего игрока на второго игрока
+	
+
+	
+	while(true) {
+		player = (player == player_2) ? player_1 : player_2; //проверка кто играет в настоящий момент
+		var userAnswer = prompt(player + ". Угадайте число от 0 до 100. Для выхода нажмите клавишу 'e'. Попытка № "+ attempt );
+		/* при нажатии клавиши e происходит 
+		выход из цикла и игры */
+		if (userAnswer == 'e') { 
+			break;
+		} else {
+			if (userAnswer > answer) {
+				alert("Ваш ответ слишком большой.");
+				 
+				
+				
+			} else if (userAnswer < answer) {
+				alert ("Ваш ответ слишком маленький.");
+				
+				
+			} else if (userAnswer == answer) {
+				alert("Вы угадали!");
+				break;
+
+			} else {
+				alert ("Необходимо ввести число!");
+			}
+		}
+
+		attempt++;
+		
+		
+	}
+
+
+	
+</script>
+</body>
