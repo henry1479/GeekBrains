@@ -1,0 +1,47 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+    var tries = +prompt("Введите количество попыток");
+    var guessArray=[
+    ["Под полом скребусь,А кошки боюсь.Кто это?","Мышка","Мышь"],
+    ["Через поле напрямик, скачет белый воротник. Кто это?","Заяц","Зайка"],
+    ["Скачет, а не конь, Щебечет, а не птица. Кто это?","Кузнечик","Кузнец"],
+    ];
+    var successCount = 0
+
+
+    function askGuess(guessArray,tries){
+        var i = parseInt(Math.random() * guessArray.length);
+
+        for (var tryCount=0; tryCount<=tries; tryCount++){
+            var userAnswer = prompt (guessArray[i][0]);
+            if (userAnswer==guessArray[i][1]||userAnswer==guessArray[i][2]){
+                alert ("Вы угадали!");
+                return true;          
+            }
+            // else if (tryCount>tries){
+                //alert ("Вы не угадали за отведенное число попыток!");
+            //}
+             else {
+                alert ("Вы не угадали!");
+                //userAnswer = prompt(guessArray[i][0]);
+                }    
+        }
+                alert ("Вы не угадали за отведенное число попыток!");  
+}
+    
+    var result = askGuess(guessArray,tries);
+    if (result==true){
+        successCount++
+        var ask = prompt("Попробуем еще раз?");
+        if (ask=="yes") {
+            askGuess(guessArray,tries);
+        }
+        else{
+            alert ("С тобой было весело, приходи еще! Ты отгадал правильно " +successCount);
+        }
+    }
+        
+
+
+</script>

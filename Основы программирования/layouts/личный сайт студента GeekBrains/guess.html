@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		var answer = parseInt(Math.random() * 10);
+		var player = 2;
+
+		//функция для обработки имен игроков из input, добавляет их в массив
+		function readName(){
+			var names = [];
+			var name_1 = document.getElementById("name_1").value;
+			var name_2 = document.getElementById("name_2").value;
+			names.push(name_1);
+			names.push(name_2);
+			return names;
+			
+		}
+		//вывод первой попытки с именем первого игрока с событием на кнопке "запомнить"
+		function enterName() {
+			event.preventDefault();
+			var names = readName();
+			write(names[0] +  ", угадайте число от 0 до 100");
+		}
+		// Выводит текст, если ответ меньше в зависимости от того чей ход	
+		function enterName_1() {
+			var names = readName()
+			if(player == 1) {
+			write("Ваш ответ слишком маленький. Играет " + names[0]);
+			} else {
+				write("Ваш ответ слишком маленький. Играет " + names[1]);
+			}
+
+		}
+		//  Выводит текст, если ответ больше в зависимости от того чей ход
+		function enterName_2() {
+			var names = readName()
+			if(player == 1) {
+			write("Ваш ответ слишком большой. Играет " + names[0]);
+			} else {
+				write("Ваш ответ слишком большой. Играет " + names[1]);
+			}
+		}	
+		
+		function readInt(){
+			var number = document.getElementById("userAnswer").value;
+			return parseInt(number);
+			// return +document.getElementById("userAnswer").value;
+		}
+
+		function write(text){
+			document.getElementById("info").innerHTML = text;
+		}
+
+		function hide(id){
+			document.getElementById(id).style.display = "none";
+		}
+
+		function guess(){
+			event.preventDefault();
+			var userAnswer = readInt();
+			if(userAnswer == answer){
+				write( "<b>Поздравляю, вы угадали!</b>");
+				hide("button");
+			} else if(userAnswer > answer){
+				enterName_2();
+				
+
+			} else if(userAnswer < answer){
+				enterName_1();	
+			}
+			//проверка чей ход
+			if(player == 1) {
+				player = 2;
+			} else {
+				player = 1;
+			}	
+		}
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="guess.html">Угадайка</a>
+		<a href="password_generator.html">Генератор паролей</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра угадайка</h1>
+
+			<div class="names-block">
+				<p>Введите имя первого игрока</p>
+				<input type="text" id="name_1">
+				<p>Введите имя второго игрока</p>
+				<input type="text"  id= "name_2">
+				<a href="#" onclick="enterName();" id="button">Запомнить</a>
+				
+			</div>
+
+			<div class="box">
+
+				<p id="info"></p>
+				<input type="text" id="userAnswer">
+				<br>
+				<!-- кнопка с событием guess и параметрами обратного вызова -->
+				<a href="#" onclick="guess();" id="button">Проверить</a>				
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; Kostya Tsypa
+<div>
+
+
+</body>
+</html>

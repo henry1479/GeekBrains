@@ -1,0 +1,55 @@
+<meta charset="utf-8">
+<script type="text/javascript">
+
+
+var number= +prompt("Введите число");
+function getArray(n){
+	var array=[];
+	for (var i=1; i<=n; i++){
+		array.push(i);
+	}
+	return array
+}
+
+function getSum (arr){
+	var sum = 0
+	for (var i=1; i<=arr.length; i++){
+		sum +=arr[i-1];
+	}
+	return sum;
+}
+
+
+function getMax(array){
+	var maxValue = array[0];
+	for(var i = 1; i < array.length; i++) {
+	   var currentValue = array[i];
+	   if(currentValue > maxValue) {
+	      maxValue = currentValue;
+	   	}
+	}
+	return maxValue;
+}
+
+function getMin(array){
+	var minValue = array[0];
+	for(var i = 1; i < array.length; i++) {
+	   var currentValue = array[i];
+	   if(currentValue < minValue) {
+	      minValue = currentValue;
+	   	}
+	}
+	return minValue;
+}
+
+function getEven(array){
+	var even=[];
+	for(var i=1; i<=array.length; i++){
+		if (array[i-1]%2==0){
+			even.push(array[i-1]);
+		}
+	}
+	return even
+	
+}
+</script>

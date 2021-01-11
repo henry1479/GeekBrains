@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css">
+	<script>
+		
+	
+		
+		
+
+
+
+		
+
+		function getSigns(){
+			// возвращает значение пользователя
+			return document.getElementById('userAnswer').value;
+		}
+
+		function write(text){
+			//выводит сгенерированный пароль
+			document.getElementById("info").innerHTML = text;
+		}
+
+		function fibonachi(){
+			var signs = getSigns();
+			signs = parseInt(signs);
+			var set = [];
+			var a = 1;
+			var c = 0
+			for(i= 0; i < signs; i++){
+				if(c == 0||c == 1){
+					c = c + a;
+				} else {
+					a = c - a;
+					c = c + a;
+				}
+				set.push(c);
+			}
+			write(set);
+			set = [];
+		}
+
+		
+	</script>
+</head>
+<body>
+	<div class="content">
+		<div class="header">
+			<a href="index.html">Главная</a>
+			<a href="puzzle.html">Загадки</a>
+			<a href="guess.html">Угадайка</a>
+			<a href="password_generator.html">Генератор паролей</a>
+			<a href="fibbonachi.html">Последовательность Фибоначи</a>
+			
+		</div>
+
+		<div class="contentWrap">
+		    <div class="content">
+		        <div class="center">
+
+					<h1>Последовательность Фибоначи</h1>
+
+					<div class="box">
+						<p>В последовательности Фибоначи каждое следующие число является суммой двух предыдущих.</p>
+						<p>Введите количество символов последовательности: </p>
+						<p id="info"></p>
+						<input type="text" id="userAnswer">
+
+						<br>
+						<a href="#" onClick="fibonachi();">Сгенерировать</a>
+
+					</div>
+
+		        </div>
+		 	</div>
+		</div>
+
+	</div>
+	<div class="footer">
+		Copyright &copy; Kostya Tsypa
+	<div>
+	
+</body>
+</html>

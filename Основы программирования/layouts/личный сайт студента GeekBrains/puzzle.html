@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Личный сайт студента GeekBrains</title>
+	<link rel="stylesheet" href="style.css"> 
+	<script type="text/javascript">
+
+		window.numberRightAnswer = 0; //количество правильных ответов(делаем глобальной переменной)
+	var riddle_1 = 'Решите загадки: cтоит дуб,в нем двенадцать гнезд, в каждом гнезде по четыре яйца,в каждом яйце по семи цыпленков.';
+	var riddle_2  = 'Зазвенели ручьи, прилетели грачи. В улей пчела первый мёд принесла. Кто скажет, кто знает, когда это бывает?';
+	var riddle_3  = 'В грядках красные девицы прячут спеющие лица, как созреют - захрустят на зубах лесных зайчат.';
+	var riddle_4  = 'Утром добрая девица, в каждый дом попасть стремится, чтобы стало всем светло, и уютно и тепло. Ну, а вдруг раздухарится эта рыжая девица, будет и жара, и зной, не поспорите со мной!.';
+	// создаем объект с массивами отгадок для каждой загадки
+	var fill = {
+		riddle_1: ['год', 'year', '1 год'],
+		riddle_2:  ['весна', 'spring', 'март'],
+		riddle_3: ['морковь', 'рыжая радость', 'подземный колпак'],
+		riddle_4: ['солнце', 'sun', 'sollar']
+	};
+
+	
+	function doRiddle(id,right_answers) {
+		var answer = document.getElementById(id).value;
+		answer = answer.toLowerCase(); //переводим ответ пользователя в нижний регистр
+		if (right_answers.indexOf(answer) != -1) {
+			numberRightAnswer ++;
+		} 
+	}
+
+	function checkAnswers(){
+		//вызываем функцию doRiddle 4 раза с разными аргументами
+		doRiddle('userAnswer1', fill.riddle_1);
+		doRiddle('userAnswer2', fill.riddle_2);
+		doRiddle('userAnswer3', fill.riddle_3);
+		doRiddle('userAnswer4', fill.riddle_4);
+		alert('Количество правильных ответов: ' + numberRightAnswer + ' . Спасибо за участие!');
+		return;
+	}
+
+
+	</script>
+</head>
+<body>
+
+<div class="content">
+	<div class="header">
+		<a href="index.html">Главная</a>
+		<a href="puzzle.html">Загадки</a>
+		<a href="guess.html">Угадайка</a>
+		<a href="password_generator.html">Генератор паролей</a>
+	</div>
+
+<div class="contentWrap">
+    <div class="content">
+        <div class="center">
+
+			<h1>Игра в загадки</h1>
+
+			<div class="box">
+
+				<p>Cтоит дуб,в нем двенадцать гнезд, в каждом гнезде по четыре яйца,в каждом яйце по семи цыпленков.</p>
+				<input type="text" id="userAnswer1">
+
+				<p>Зазвенели ручьи, прилетели грачи. В улей пчела первый мёд принесла. Кто скажет, кто знает, когда это бывает?</p>
+				<input type="text" id="userAnswer2">
+
+				<p>В грядках красные девицы прячут спеющие лица, как созреют - захрустят на зубах лесных зайчат.</p>
+				<input type="text" id="userAnswer3">
+
+				<p>Утром добрая девица, в каждый дом попасть стремится, чтобы стало всем светло, и уютно и тепло. Ну, а вдруг раздухарится эта рыжая девица, будет и жара, и зной, не поспорите со мной!.</p>
+				<input type="text" id="userAnswer4">
+
+				<br>
+				<a href="#" onClick="checkAnswers();">Ответить</a>
+
+			</div>
+
+        </div>
+    </div>
+</div>
+
+	
+
+</div>
+<div class="footer">
+	Copyright &copy; Vasily Pupkin
+<div>
+
+
+</body>
+</html>
