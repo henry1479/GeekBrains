@@ -1,6 +1,21 @@
 body {
     font-family: sans-serif;
 }
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.head-bar {
+    display: flex;
+    justify-content: space-around;
+}
+
 
 
 .text {
@@ -9,9 +24,14 @@ body {
     color: #1F3F68;
 }
 
+.head-text {
+    width: 425px;
+}
+
 .main-head {
     font-size: 64px;
     color: #1F3F68;
+    width: 510px;
 }
 
 .second-head {
@@ -29,6 +49,15 @@ body {
     font-size: 20px;
     line-height: 30px;
     color: #1F3F68;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card {
+    width: 359px;
 }
 
 .form_element {
@@ -54,4 +83,32 @@ body {
     color: #FFFFFF;
     text-transform: uppercase;
     opacity: 0.4; 
+}
+
+
+
+.fin-project  {
+    text-align: center;
+}
+
+.footer-head {
+    width: 340px;
+}
+
+.work-team_text {
+    width: 495px;
+}
+
+.footer-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer-list li {
+    flex-grow: 1;
+}
+.content-wrapper {
+    display: flex;
+    justify-content: space-around;
 }
