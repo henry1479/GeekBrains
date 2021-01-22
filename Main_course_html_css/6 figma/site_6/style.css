@@ -11,45 +11,6 @@ body {
     margin: 0 auto;
 }
 
-.head-bar {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 37px;
-}
-
-.contact-offer {
-    background: url(img/main-bg.png) no-repeat;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    height: 250px;
-    margin-top: 55px;
-}
-
-
-
-.text {
-    font-size: 16px;
-    line-height: 26px;
-    color: #1F3F68;
-}
-
-
-.head-text {
-    width: 425px;
-}
-
-.text-head_contacts {
-    font-size: 20px;
-    line-height: 30px;
-    width: 55%;
-    color:#FFFFFF;
-    opacity: 0.6;
-    margin: 0 auto;
-
-}
 
 .main-head {
     font-size: 64px;
@@ -69,7 +30,12 @@ body {
 }
  
 .third_head {
+    font-weight: 300;
     font-size: 36px;
+    line-height: 46px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    color: #000000; 
     text-align: center;
 }
 
@@ -82,28 +48,203 @@ body {
 
 }
 
+
+
+.text {
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.05em;
+    color: #1F3F68;
+    opacity: 0.6;
+}
+
+
+
+.header{
+    background: linear-gradient(0deg, #EBF3FB 8.84%, rgba(152, 195, 232, 0) 31.12%);
+}
+
+.header-pos{
+    display: flex;
+    flex-direction: column;
+    height: 768px;
+   
+}
+
+.head-bar {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 37px;
+}
+
+.offer {
+    padding-top: 115px;
+    flex-grow: 1;
+    height: 100%;
+    background: url(img/illustration.png) no-repeat right center;
+}
+
+
+
+.head-text {
+    width: 45%;
+    padding-top: 32px;
+    padding-bottom: 71px;
+}
+
+.offer-button {
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 0!important;
+}
+
+.what-we-do {
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+
 .cards {
     display: flex;
     justify-content: space-between;
+    padding-top: 64px;
 }
 
 .card {
     width: 359px;
+    background: #FFFFFF;
+    padding: 44px 52px 44px 32px;
+    box-shadow: 5px 20px 50px rgba(16, 112, 177, 0.2);
+    border-radius: 10px;
+    box-sizing:border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.card-img {
+    align-self: center;
 }
 
+
+.card-head {
+    padding-top: 51px;
+    padding-bottom: 14px;
+    width: 283px;
+    font-size: 20px;
+    text-transform: initial;
+}
+
+.card-text {
+    width: 268px;
+
+}
+
+.card-link {
+    font-size: 14px;
+    line-height: 30px;
+    text-decoration: none;
+    margin-top: 30px;
+    letter-spacing: 0.05em;
+    display: block;
+    color: #5A98D0;
+}
+
+
+.card-link::after {
+    content: url(img/arrow.svg);
+    padding-left: 20px;
+    opacity: 0.6;
+    vertical-align: -0.2em;
+}
 
 
 
 .fin-project  {
     text-align: center;
+    padding-bottom: 112px;
 }
 
+
+.fin-project_text {
+    width: 750px;
+    margin: 0 auto;
+    color:#000000;
+    opacity: 1;
+    padding-bottom: 64px;
+    
+}
+
+.smart-home_wrapper {
+    position: relative;
+    padding-bottom: 32px;
+}
+
+.project-img_text {
+    position: absolute;
+    font-size: 32px;
+    line-height: 46px;
+    text-align: right;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+
+}
+
+.smart-home_text {
+    position: absolute;
+    font-size: 32px;
+    line-height: 46px;
+    text-align: right;
+    letter-spacing: 0.05em;
+    color: #FFFFFF;
+    /* left: 674px;
+    bottom: 374px; */
+    right: 64px;
+    top: 64px;
+    
+}
+
+.fin-project_img_2-3_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sparklite-wrapper, .carrep_wrapper {
+    position: relative;
+}
+
+.carrep-text, .sparklite-text {
+    bottom: 336px;
+    left: 32px;
+
+}
 
 
 .work-team_text {
     width: 495px;
 }
 
+
+/* contacts.html */
+
+.contact-offer {
+    background: url(img/main-bg.png) no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    height: 250px;
+    margin-top: 55px;
+}
+
+.text-head_contacts {
+    font-size: 20px;
+    line-height: 30px;
+    width: 55%;
+    color:#FFFFFF;
+    opacity: 0.6;
+    margin: 0 auto;
+
+}
 
 .main-content {
     padding-bottom: 96px;
@@ -275,6 +416,7 @@ body {
     letter-spacing: 0.05em;
     text-align: left;
     padding-bottom: 32px;
+    color:#FFFFFF;
 }
 
 
