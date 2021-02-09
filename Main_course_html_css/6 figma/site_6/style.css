@@ -262,7 +262,7 @@ body {
 .content-wrapper {
     display: flex;
     justify-content: space-between;
-    width: 940px;
+    max-width: 940px;
     margin: 0 auto;
 }
 

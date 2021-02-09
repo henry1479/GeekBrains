@@ -1,0 +1,64 @@
+$color-button: #007bff;
+
+
+.nav-bar_button {
+    color: $color-button;
+}
+
+.mod-jumbotron {
+    background: url(img/sundown.jpg) no-repeat;
+    background-size: 100% 100%;
+    color:bisque;
+}
+
+.form {
+    max-width: 60%;
+    margin: 0 auto;
+    border: 1px solid rgba(159, 159, 158, 0.4);
+    border-radius: 5px;
+    padding: 30px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    margin-bottom: 5%;
+}
+
+.footer {
+    background:#007BFF;
+    padding: 40px;
+}
+
+.footer-pos ul {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container li {
+    list-style-type: none;
+    flex-wrap: wrap;
+    /* flex-grow: 1; */
+
+}
+
+.container li a {
+    text-decoration: none;
+    color:palegoldenrod;
+    text-transform: uppercase;
+}
+
+.card-img-2 {
+    height: 232px;
+}
+
+.h2 {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 3%;
+}
+
+.button {
+    padding: 10px 50px;
+    margin: 0 auto;
+    display: block;
+}
