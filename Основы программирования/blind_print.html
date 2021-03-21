@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style type="text/css">
+		body {
+			background: gray;
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		.wrapper {
+			width: 70vw;
+			margin: 0 auto;
+			background: #fff;
+			border-radius: 10px;
+			height: 60vh;
+
+
+		}
+
+		.wrapper * {
+			width: 60%;
+			margin: 0 auto;
+			display: block;
+		}
+
+		.h2 {
+			padding-top: 5%;
+			padding-bottom: 3%;
+
+		}
+
+		input {
+			padding: 5px;
+		}
+
+		.button {
+			display: block;
+			margin-top: 3%;
+			background: skyblue;
+			border: none;
+			padding: 5px;
+			border-radius: 5px;
+			
+
+		}
+
+		.card-box {
+			margin-top: 40px;
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+
+		}
+
+		.card-wrapper {
+			background: url(img/product-1.png) no-repeat;
+			width: 270px;
+			height: 41vh;
+			border-radius:10px;
+		}
+
+		.card {
+			border-radius:10px;
+			width: 99%;
+			height: 41vh;
+			display: none;
+			flex-direction: column;
+			text-align: center;
+			align-items: center;
+			background: white;
+			border: 1px solid orange;
+			opacity: 0.6;
+		}
+
+		.active {
+			display: flex!important;
+		}
+
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		<h2 class="h2">Repeat text</h2>
+		<p id="setOutput"></p>
+		<form action="#">
+			<input type="text" id="input" autofocus>
+		<button class="button" type="reset" onclick="getResult();">Check!</button>
+		</form>
+		
+	</div>
+	<div class="card-box" id="cardBox">
+		<div class="card-wrapper" id="cardWrapper">
+			<div class="card" id="card">
+				<h4 class="card-cap">Fishnet chair</h4>
+				<p class="card-text">Lorem, ipsum dolor, sit amet consectetur adipisicing elit. Voluptas distinctio quis aliquid saepe. Molestias pariatur reiciendis soluta laborum accusamus distinctio, repudiandae ex nihil qui, debitis dolorum ipsa velit voluptatum deserunt!</p>
+			</div>
+		</div>
+		<div class="card-wrapper" id="cardWrapper">
+			<div class="card" id="card">
+				<h4 class="card-cap">Fishnet chair</h4>
+				<p class="card-text">Lorem, ipsum dolor, sit amet consectetur adipisicing elit. Voluptas distinctio quis aliquid saepe. Molestias pariatur reiciendis soluta laborum accusamus distinctio, repudiandae ex nihil qui, debitis dolorum ipsa velit voluptatum deserunt!</p>
+			</div>
+		</div>
+		<div class="card-wrapper" id="cardWrapper">
+			<div class="card" id="card">
+				<h4 class="card-cap">Fishnet chair</h4>
+				<p class="card-text">Lorem, ipsum dolor, sit amet consectetur adipisicing elit. Voluptas distinctio quis aliquid saepe. Molestias pariatur reiciendis soluta laborum accusamus distinctio, repudiandae ex nihil qui, debitis dolorum ipsa velit voluptatum deserunt!</p>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		
+		
+
+		
+		s1 = 2;
+		var setarr = [];
+		var set_1 = ['a','d','k','j','n','m','z'];
+		var set_2 = ['r','t','p','o','c','t','x'];
+		var set_3 = ['h','e','b','s','l','f','q'];
+		function getSet(set){
+
+			var output = document.getElementById('setOutput');
+			var n = 15;
+			for(i=0; i<n; i++){
+				var letter = Math.round(Math.random() * 6);
+				setarr.push(set[letter]);
+			}
+			setarr = setarr.toString();
+			output.innerHTML = setarr;
+		}
+		
+		getSet(set_1);
+
+		function getResult() {
+
+			var input = document.getElementById('input');
+			input.focus();
+			input = input.value;
+			input = input.split('');
+			if(input == setarr){
+				alert('Equal');
+				
+			} else {
+				alert('No equal');
+				
+			}
+			setarr = [];
+			if(s1==2){
+				getSet(set_2);
+				s1 = 3;
+			} else if  (s1==3){
+				getSet(set_3);
+				s1 = 1;
+			} else {
+				getSet(set_1)
+				s1=2;
+			}
+
+		}
+		
+
+		
+		
+		
+
+		cards = document.querySelectorAll('.card');
+		cardWrappers = document.querySelectorAll('.card-wrapper');
+
+		for(let cardwrap of cardWrappers) {
+			cardwrap.onmouseover = function(){
+				cards.forEach(elem=> elem.classList.remove('active'));
+				
+			}
+		}
+
+		
+
+	</script>
+	
+</body>
+</html>
