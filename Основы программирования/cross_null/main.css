@@ -1,0 +1,16 @@
+.board {
+    display: grid;
+    Grid-template-rows: repeat(3, 200px);
+    grid-template-columns: repeat(3, 200px);
+    /* height: 100vh; */
+    /* width: 50%; */
+    margin: 0 auto;
+}
+
+
+input {
+    text-align: center;
+    font-size: 13rem;
+}
+
+
