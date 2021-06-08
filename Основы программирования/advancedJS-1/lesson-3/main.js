@@ -23,26 +23,26 @@ class GoodsList {
     constructor() {
         this.goods = [];
     }
-    // направляет запрос к серверу, получает ответ и наполняет массив товарами
-    // async fetchGoods() {
-    //     const responce = await fetch(`${API_URL}/catalogData.json`);
-    //     if (responce.ok) {// проверка на наличие ответа на запрос
-    //         const catalogItems = await responce.json(); // async это вместо then
-    //         this.goods = catalogItems;
-    //         // console.log(this.goods);
-    //     } else {
-    //         alert(`Ошибка при соединении сервером`);
-    //     }
+    //направляет запрос к серверу, получает ответ и наполняет массив товарами
+    async fetchGoods() {
+        const responce = await fetch(`${API_URL}/catalogData.json`);
+        if (responce.ok) {// проверка на наличие ответа на запрос
+            const catalogItems = await responce.json(); // async это вместо then
+            this.goods = catalogItems;
+            // console.log(this.goods);
+        } else {
+            alert(`Ошибка при соединении сервером`);
+        }
 
 
-    // }
-
-    fetchGoods() {
-        this.goods = [
-            { product_name: 'Ноутбук', id_product: 123, price: 46500 },
-            { product_name: 'Мышка', id_product: 456, price: 1000 },
-        ]
     }
+
+    // fetchGoods() {
+    //     this.goods = [
+    //         { product_name: 'Ноутбук', id_product: 123, price: 46500 },
+    //         { product_name: 'Мышка', id_product: 456, price: 1000 },
+    //     ]
+    // }
     // метод наполняте карточку содержимым и внедряет ее в html
     render() {
         let listAcc = '';
@@ -69,13 +69,13 @@ class GoodsList {
 
 
 class CartItem extends GoodsItem {
+    // подтягивем свойства родительского класса
     constructor(id, title, price,data) {
         super(id, title, price);
-        this.data = data;
+        this.data = data; // это нужно для связи удаляемой карточки с массивом корзины, чтобы понять какой элемент из массива удалять
     }
 
     render() {
-
         return `<div class="cart__goods-item" data-number="${this.data}" itemId="${this.id}"><h3>${this.title}</h3><p>${this.price}</p> <button type="button" class="remove-btn">Remove from cart</button></div>`;
 
     }
@@ -91,9 +91,9 @@ class Cart {
 
     // добавляет товары в виртуальную корзину по клику на кнопе в карточке
 
-    addToCart(event) {
+    async addToCart(event) {
         const goodsList = new GoodsList()//экземпляр класса GoodList
-        goodsList.fetchGoods(); // наполняем товарами
+        await goodsList.fetchGoods(); // наполняем товарами
         const idProduct = Number(event.target.parentElement.getAttribute('itemId')); // itemId карточки
         // проходимся циклом по массиву с товарами
         for (let item of goodsList.goods) {
@@ -101,72 +101,62 @@ class Cart {
                 this.cartGoods.push(item); // добавляем товар в корзину
             }
         }
-
-        
-        
-        this.renderCart();
-        // console.log(this.cartGoods)
-        this.removeButtons = document.querySelectorAll('.remove-btn');
-        // this.addDataAttribute(this.removeButtons,this.cartGoods);
-        this.removeFromCart(this.removeButtons);
-        // console.log(this.cartGoods)
-        this.countCart(this.cartGoods); 
-       
-        
-        
-        
-
+        this.renderCart(); // отрисовываем корзину
+        this.removeButtons = document.querySelectorAll('.remove-btn'); // получаем кнопки на карточках корзины
+        this.removeFromCart(this.removeButtons); // вызываем метод по удалению этих карточек при клике на кнопку
+        // иначе никак не получается сделать 
+        this.countCart(this.cartGoods); // вызывам метод подсчета количества товаров в корзине их стоимсоть 
     }
 
    
 
-    // удаляет товары из корзины по клику на кнопку на странице корзины "удалить"
+    // удаляет товары из корзины по клику на кнопку на карточке корзины "Add from cart"
+    // принимает список кнопок
     removeFromCart(buttons) {
-        function test(event) { 
-            const product = Number(event.target.parentElement.dataset.number);
+        // функция обработчик
+        function remove (event) { 
+            //получаем кликнутую кнопку
             const elem = event.target.parentElement;
+            //получаем атрибут data-number карточки кликyутой кнопки
+            const product = Number(elem.dataset.number); 
+            // удаляем кликнутую карточку из html 
             elem.parentNode.removeChild(elem);
+            //удаляем элемент из массива корзины
             delete this.cartGoods[product];
+            // уменьшаем длину массива на один
             this.cartGoods.length -=1;
-            console.log(this.cartGoods);
-            
-            
-            
+            this.countCart(this.cartGoods); // вызывам метод подсчета количества товаров в корзине их стоимость 
         }
 
-        buttons.forEach(el => el.addEventListener('click', test.bind(this)))
+        buttons.forEach(el => el.addEventListener('click', remove.bind(this)))
     }
 
-    // считает стоимость товаров в корзине
+    // считает стоимость товаров в корзине и выводит их с вместе с количеством
 
     countCart(cart) {
+        //получаеи информационный блок корзины
+        const cartInfo = document.querySelector('.cart .cart-info');
+        // сумма
         let sum = 0;
+        // проходимся циклом по корзине с товарами
         for (let good of cart) {
-            sum += good.price
+            sum += good.price // увеличиваем сумму на стоимость товара
         }
-
-        console.log(sum);
-        console.log(cart.length)
-
+        // внедреям html параграф длиной корзины и общей стоимостью товаров
+        cartInfo.innerHTML = `<p>В корзине сейчас ноходится товаров: ${cart.length} на общую стоимость: ${sum}</p>`
+        
     }
 
    
 
-    // отрисовывает блок на странице с корзиной с информацией о количестве товаров и их общей стоимости
+    // отрисовывает корзину вместе с карточками
     renderCart() {
-        
         let listHTML = '';
         this.cartGoods.forEach((good,i=0) => {
-            let data = i++;
-            // const data = datas.forEach((el)=>{console.log(el)})
-            
-            const item = new CartItem(good.id_product, good.product_name, good.price, data)
-            // новый объект
-        
+            let data = i++; // набор чисел для  aтрибута data-number
+            const item = new CartItem(good.id_product, good.product_name, good.price, data)// новый объект корзины
             listHTML += item.render();// добавляем в пустую строку карточку наполненную содержимым
-            
         })
-
         document.querySelector('.cart .cart__goods-list').innerHTML = listHTML;// внедряем в html
 
     }
@@ -180,20 +170,16 @@ class Cart {
 
 
 
-const init = () => {
+const init = async() => {
     const goodsList = new GoodsList(); //  новый объект с товарами
-    goodsList.fetchGoods(); // наполняем товарами
+    await goodsList.fetchGoods(); // наполняем товарами
     goodsList.render();// отрисовываем карточки
     let el = document.getElementsByClassName('goods-item');
-    const cart = new Cart();
-
+    const cart = new Cart(); // новая корзина
     const addBtn = document.querySelectorAll('.add-btn');
     // вешаем обработчик на кнопки в карточке и привязываем к this объекта
     addBtn.forEach((el) => { el.addEventListener('click', cart.addToCart.bind(cart)) });
-    
-    
-
-
+    const cartInfo = document.querySelector('.cart .cart-info');
 
 }
 
