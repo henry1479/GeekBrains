@@ -1,65 +1,59 @@
-// vue.js
 
-/*
-нужен для создание быстрых прототиаов
-
-
-*/
-const app = new Data({
-    el: '#app',
-    data: {
-        name: '',
-        listOfName: ['Ovik', 'lena', 'petya', 'tanya'],
-        listOfItems: [{name: 'soks', price: 450},{name: 'skirt', price: 1450},]
-    }, 
-
-    methods: {
-        onClickSayHello: ()=> {
-            console.log('Hello!')
-        }
-    },
-
-    computed:{
-        transformToUpperCase(){
-            return this.name.toUpperCase()
-        }
-    }
+const API_URL =
+    "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses";
 
 
-})
 
 
-const data = new Vue ({
-    el: '#app',
+const app = new Vue({
+    el: "#app",
     data: {
         goods: [],
-        filterGoods: [],
+        filteredGoods: [],
         searchLine: '',
-
+        // массив с товарами в корзине
+        cartGoods: [{product_name: 'Телефон', price: 100}],
+        // свойство управляющие видимостью корзины
+        isVisibleCart: true,
+        // свойство для вывода сообщения
+        // если массив  с товарами пуст
+        emptyMessage: 'Список товаров пуст!'
     },
 
     methods: {
-        async getProducts () { // нужно  так, если есть вставить a
+        //получает товары с сервера
+        async getProducts() {
             const responce = await fetch(`${API_URL}/catalogData.json`);
-            if(responce.ok) {// проверка на наличие ответа на запроc
-                const catalogItems = await respsonce.json(); // async это вместо then
+            if (responce.ok) {
+                const catalogItems = await responce.json();
                 this.goods = catalogItems;
-                this.filterGoods = catalogItems; // наполняем массив для поиска товарами
+                this.filteredGoods = catalogItems;
             } else {
-                alert(`Ошибка при соединении сервером`);
+                alert("Ошибка при соединении с сервером");
             }
-        
-
         },
 
-       async mounted (){
-            await this.getProducts();
-        }
+        // осуществляет поиск товаров в массиве с ними
+        // по запросу в строке поиска
+        filterGoods() {
+            // регулярное выражение на основе свойства,  
+            //получаемое из строки поиска
+            const regExp = new RegExp(this.searchLine, 'i');
+            // фильтруем список товаров
+            this.filteredGoods = this.goods.filter(good => regExp.test(good.product_name));
+        },
 
-    }
+
+       
+    },
+
+    async mounted() {
+        await this.getProducts()
+    }    
+});
 
 
-})
+
 
 
 

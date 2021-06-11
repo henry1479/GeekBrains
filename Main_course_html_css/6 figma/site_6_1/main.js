@@ -11,3 +11,12 @@ for (let list of listItems) {
 }
 
 
+let cards = document.querySelectorAll('.product-card');
+let cardsActive = document.querySelectorAll('.product-card_active');
+
+
+
+cards.forEach(elem => elem.addEventListener('mouseover', () => elem..classList.add('card-active')));
+
+
+
