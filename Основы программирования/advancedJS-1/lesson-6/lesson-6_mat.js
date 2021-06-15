@@ -22,17 +22,24 @@ Vue.component('search-button', {
 
 // компонент для блока с товарами
 Vue.component('goods-list', {
-    props: ['goods', 'addtocart'],
+ 
+    props: ['goods', 'addtocart', 'responce'],
     template: `<div class="goods-list">
+    <error-message v-if="responce === false"></error-message>
         <goods-item v-for="goodEntity in goods" :goodProp="goodEntity"  :id="goodEntity.id_product" v-on:addtocart = 'addtocart'></goods-item>
     </div>`
+})
+
+// компонент для вывода ошибки соединения с сервером
+
+Vue.component('error-message',{
+    template:`<p>Ошибка соединения с сервером</p>`
 })
 
 
 //компонент для карточки с товарами
 Vue.component('goods-item', {
     props: ['goodProp', 'id'],
-    
     template: `<div class="goods-item" v-bind:itemId='id'>
     <h3>{{goodProp.product_name}}</h3>
     <p>{{goodProp.price}}</p>
@@ -43,22 +50,30 @@ Vue.component('goods-item', {
 
 // компонент для блока корзины
 Vue.component('cart__goods-list', {
-    props: ['cartgoods'],
+    
+    props: ['cartgoods','removefromcart'],
+ 
     template: `<div class="cart__goods-list">
-        <cart__goods-item v-for="goodEntity in cartgoods" :goodProp="goodEntity" :id="goodEntity.id_product"></cart__goods-item>
+        <empty-message v-if="cartgoods.length === 0"></empty-message>
+        <cart__goods-item v-for="goodEntity in cartgoods"   :goodProp="goodEntity" :id="goodEntity.id_product" v-on:removefromcart="removefromcart"></cart__goods-item>
     </div>`
 })
 
 
 //компонент для карточки с товарами в корзине
 Vue.component('cart__goods-item', {
+  
     props: ['goodProp', 'id'],
     template: `<div class="cart__goods-item" :itemId='id'>
     <h3>{{goodProp.product_name}}</h3>
     <p>{{goodProp.price}}</p>
-    <button type="button" class="remove-btn">Удалить из корзины</button>
+    <button type="button" class="remove-btn" v-on:click="$emit('removefromcart', $event)">Удалить из корзины</button>
     </div>`
 
+})
+
+Vue.component('empty-message',{
+    template:`<p>Корзина пуста!</p>`
 })
 
 
@@ -82,6 +97,7 @@ const app = new Vue({
         emptyMessage: 'Список товаров пуст!',
         // параметр для корзины с товарами
         cartGoods: [],
+        count: 0
     },
 
     methods: {
@@ -89,12 +105,18 @@ const app = new Vue({
         //получает товары с сервера
         async getProducts() {
             const responce = await fetch(`${API_URL}/catalogData.json`);
+            // в случае нормального ответа 
+            // преобразует ответ в объекты
+            // и возвращает true
             if (responce.ok) {
                 const catalogItems = await responce.json();
                 this.goods = catalogItems;
                 this.filteredGoods = catalogItems;
+                return true
+            // иначе сообщение об ошибке и false
             } else {
                 alert("Ошибка при соединении с сервером");
+                return false
             }
         },
 
@@ -105,7 +127,8 @@ const app = new Vue({
             //получаемое из строки поиска
             const regExp = new RegExp(this.searchLine, 'i');
             // фильтруем список товаров
-            this.filteredGoods = this.goods.filter(good => regExp.test(good.product_name));
+            this.filteredGoods = this.goods.filter((good) => {regExp.test(good.product_name);
+            good.id = i++;});
         },
 
         addToCart(event) {
@@ -116,18 +139,32 @@ const app = new Vue({
                     this.cartGoods.push(item); // добавляем товар в корзину
                 }
             }
+            // this.count++
+            // console.log(this.count);
+        },
 
-            // this.removeButtons = document.querySelectorAll('.remove-btn'); // получаем кнопки на карточках корзины
-            // this.removeFromCart(this.removeButtons); // вызываем метод по удалению этих карточек при клике на кнопку
-            // // иначе никак не получается сделать 
-            // this.countCart(this.cartGoods); // вызывам метод подсчета количества товаров в корзине их стоимсоть 
+
+        removeFromCart(event) {
+        // функция обработчик
+        //получаем список всех элементов в корзине
+        elems = document.querySelectorAll('.cart__goods-item');
+        // получаем кликнутую карточку
+        const elem = event.target.parentElement;
+        // усли кликнутая карточка есть 
+        // в списке элементов
+        //то удаляем ее из списка корзины 
+        elems.forEach((e,i=0)=> {if(e === elem) {
+            this.cartGoods.splice(i,1);
+            console.log(this.cartGoods);
+            i++
+            }
+        });
+                
         }
-
-
 
     },
 
-    async mounted() {
+    async mounted () {
         await this.getProducts()
     }    
 });

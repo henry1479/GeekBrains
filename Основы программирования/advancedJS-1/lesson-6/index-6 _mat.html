@@ -11,18 +11,19 @@
 <body>
     <div id="app">
         <header>
-            
            <search-input v-model="searchLine"></search-input>
-            <search-button :filtergoods="filterGoods"></search-button> 
-           
+            <search-button :filtergoods="filterGoods" :removefromcart = 'removeFromCart':count="count"></search-button>   
         </header>
 
         
         
         <main>
             
-           <goods-list :goods="filteredGoods" :addtocart="addToCart"></goods-list>
-           <cart__goods-list :cartgoods="cartGoods"></cart__goods-list>
+           <goods-list :goods="filteredGoods" :addtocart="addToCart" :responce="getProducts">
+            
+           </goods-list>
+           <cart__goods-list :cartGoods="cartGoods"
+           :removefromcart="removeFromCart"></cart__goods-list>
 
         </main>
     </div>
