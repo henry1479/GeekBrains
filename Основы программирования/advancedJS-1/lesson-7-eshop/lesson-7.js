@@ -1,7 +1,7 @@
 
 
 const API_URL =
-    "https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses";
+    "http://localhost:3000";
 
 //компонет поля поиска товаров
 Vue.component('search-input', {
@@ -39,8 +39,21 @@ Vue.component('error-message',{
 
 //компонент для карточки с товарами
 Vue.component('goods-item', {
-    props: ['goodProp', 'id'],
-    template: `<div class="goods-item" v-bind:itemId='id'>
+    props: ["goodProp","id"],
+    methods: {
+        async addToCart() {
+        const response = await fetch(`${API_URL}/addToCart`, {
+            method: 'POST', 
+            mode: 'cors',
+            headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify(this.goodProp) 
+        });
+        },
+    },
+
+    template: `<div class="goods-item" v-bind:itemId='id' @click=addToCart>
     <h3>{{goodProp.product_name}}</h3>
     <p>{{goodProp.price}}</p>
     <button type="button" v-on:click="$emit('addtocart',$event)" class="add-btn">Добавить в корзину</button>
@@ -104,7 +117,7 @@ const app = new Vue({
 
         //получает товары с сервера
         async getProducts() {
-            const responce = await fetch(`${API_URL}/catalogData.json`);
+            const responce = await fetch(`${API_URL}/catalogData`);
             // в случае нормального ответа 
             // преобразует ответ в объекты
             // и возвращает true
@@ -118,6 +131,10 @@ const app = new Vue({
                 alert("Ошибка при соединении с сервером");
                 return false
             }
+        },
+
+        async sendProducts() {
+
         },
 
         // осуществляет поиск товаров в массиве с ними
@@ -138,8 +155,6 @@ const app = new Vue({
                     this.cartGoods.push(item); // добавляем товар в корзину
                 }
             }
-            // this.count++
-            // console.log(this.count);
         },
 
 
@@ -169,68 +184,6 @@ const app = new Vue({
 });
 
 
-// Vue.component('some-component',{
-//     template: `<h1> Hi {{name}} <slot></slot></h1>`,//внутренности
-//     // проброс данных в компоненете
-//     props: ['name'], // это атрибуты, значения для name можно указать в html
-//     // data(){
-//     //     return {name: `Vasya`}
-//     // },
-// })
 
-// //компоненты нужно вставлять перед инициализацией класса
-
-// const app = new Vue({
-//     el:"#app",
-//     data: {
-//         name: 'Kostya'
-//     }
-// })
-
-
-
-// { product_name: 'Ноутбук', price: 46500 }, { product_name: 'Мышка', price: 1000 }
-
-
-
-
-
-// /*
-
-
-
-// */
-// /*
-
-
-
-// */
-
-
-// /*
-
-
-
-// */
-
-
-// /*
-
-
-
-// */
-// /*
-
-
-
-// */
-
-
-// /*
-
-
-
-// */
-// /*
-
+// node -v версия node
 
