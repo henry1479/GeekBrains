@@ -38,6 +38,8 @@ Vue.component('error-message',{
 //компонент для карточки с товарами
 Vue.component('goods-item', {
     props: ["goodProp","id"],
+    //send request POST
+    //with body in view an object item
     methods: {
         async addToCart() {
         const response = await fetch(`${API_URL}/addToCart`, {
@@ -46,7 +48,7 @@ Vue.component('goods-item', {
             headers: {
             'Content-Type': 'application/json;charset=utf-8'
             },
-            body: JSON.stringify(this.goodProp) 
+            body: JSON.stringify(this.goodProp),
         });
         },
     },
