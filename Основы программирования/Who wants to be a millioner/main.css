@@ -39,3 +39,17 @@
 
 }
 
+/* .points-item:nth-child(1) {
+    background-color: green;
+} */
+
+.end-game {
+    text-align: center;
+    margin: 29%;
+    border: 3px solid red;
+    background: cornflowerblue;
+    padding: 2%;
+    border-radius: 10px;
+    color: red;
+}
+
