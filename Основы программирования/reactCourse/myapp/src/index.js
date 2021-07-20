@@ -1,29 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Message from './App';
-import Counter from './Counter';
-import CounterTwo from './ClassCounter';
-import Input from './Input';
-import MessagesList from './MessagesList';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 
 
-const myName = 'Kostya';
-const myLastName = 'Tsypa';
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <Message lastName = {myName} />
-    <Counter/>
-    <CounterTwo/>
-    <Input/>
-    <MessagesList/>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
-
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

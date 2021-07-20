@@ -1,0 +1,74 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+
+.App-header {
+  background-color: #690b85;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #c5e9f3;
+}
+
+/* MessageLIst */
+
+.message {
+  color: #61dafb;
+  font-weight: 700;
+  font-size: 1.3em;
+  letter-spacing: 0.25em;
+
+}
+
+.message-red {
+  color: #e03c3c;
+  font-weight: 300;
+  font-size: 0.3em;
+  letter-spacing: 0.25em;
+}
+
+/* Form */
+.message-form {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 300px;
+}
+
+.message-form__author-text, .message-form__message-text {
+  padding: 10px 15px;
+  outline: none;
+  border-radius: 23px;
+  border-color: transparent;
+}
+
+.message-form__message-text {
+  padding-bottom: 60px;
+}
+
+.message-form__btn {
+  color: #fff;
+  background: #109fc5;
+  border: transparent;
+  display: inline-block;
+  padding: 10px 0px;
+  border-radius: 15px;
+  width: 30%;
+  align-self: center;
+}
+

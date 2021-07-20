@@ -177,9 +177,9 @@ class Prompts extends Answers {
 
 const init = () => {
     
-    const button = document.querySelector('.choose-btn');
+    const button = document.getElementsByClassName('.choose-btn');
     const buttonHalf = document.querySelector('.half_to_half');
-    console.log()
+    console.log(button)
     
 
     const question = new Questions();
@@ -194,8 +194,11 @@ const init = () => {
     // checking of the user answer
     // is run then display the result 
     // of checking
-    button.addEventListener('click', answers.checkAnswer.bind(answers));
+    // button.addEventListener('click', answers.checkAnswer.bind(answers));
     buttonHalf.addEventListener('click', answers.halfOfTrue.bind(answers));
+    const a = /abc/
+   
+    console.log(typeof(a+1))
 }
 
 
