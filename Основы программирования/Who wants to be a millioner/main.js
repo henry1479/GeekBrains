@@ -105,18 +105,26 @@ class Answers extends Questions {
         // the key in object is the right answer
         // check equality of the user answer and the key
         if (block.value === source.key.toString()) {
-            console.log('Norm');
             this.numberOfStage++;
             super.displayQuestion();
-            this.displayAnswers(this.numberOfStage);
+            try {
+                this.displayAnswers(this.numberOfStage);
+            }
+            catch{
+                this.displayWin();
+            }
+            
             super.increaseCount();
             super.displayPoints();
             block.value = '';
+            console.log(this.numberOfStage > this.storeQuestions.lehgth-1);
+            
             
         } else {
             this.displayEnd();
             console.log(source.key);
         }
+       
     }
     // function realizes the prompt 50 to 50 of the
     //game 
@@ -146,6 +154,34 @@ class Answers extends Questions {
         return
 
     }
+
+    // realize the prompt 'help of public'
+    helpOfPublic(){
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('public-wrapper');
+        const arr = new Array(10);
+        
+        for(let i=0; i<this.answers.length; i++){
+            let gist = document.createElement('div');
+            let random_1 = this.constructor.getRandomNumber(arr);
+            let random_2 = this.constructor.getRandomNumber(arr);
+            gist.setAttribute('id',i);
+            gist.style.background = 'grey';
+            gist.style.width = `${random_1}${random_2}%`;
+            gist.style.height = '10px';
+            gist.style.marginBottom = '10px';
+            gist.innerText=`${this.answers[this.numberOfStage].answers[i]}`
+            console.log(this.answers[this.numberOfStage].answers[i])
+            wrapper.append(gist);
+
+        }
+
+        document.body.append(wrapper)
+
+
+
+        console.log(wrapper);
+    }
     // static function generates any number from 0 to array.length
     static getRandomNumber(arr){
         return Math.floor(Math.random() * (arr.length))
@@ -156,6 +192,20 @@ class Answers extends Questions {
     displayEnd(){
         const message = `<p class='end-game'>You finish your parting at the game. You cast: ${this.count}</p>`
         document.body.innerHTML = message;
+    }
+
+
+    displayWin() {
+        let topPosition = 0
+        const messageElement = document.createElement('p');
+        messageElement.classList.add('win-game');
+        const message = `You win and cast: ${this.count}`;
+        messageElement.append(message);
+        document.body.innerHTML = '';
+        document.body.append(messageElement);
+        console.log(messageElement);
+        const intervalId = setInterval(()=>{messageElement.style.top = `${topPosition++}%`}, 1000);
+        
     }
 
 
@@ -177,25 +227,36 @@ class Prompts extends Answers {
 
 const init = () => {
     
-    const button = document.querySelector('.choose-btn');
-    const buttonHalf = document.querySelector('.half_to_half');
-    console.log()
+   
     
+    
+    try {
+        const button = document.querySelector('.choose-btn');
+        const buttonHalf = document.querySelector('.half_to_half');
+        console.log()
+        
+    
+        const question = new Questions();
+        const prompts = new Prompts; 
+        const answers = new Answers();
+        //display questions
+        question.displayQuestion();
+        answers.displayAnswers(answers.numberOfStage);
+        answers.helpOfPublic()
+        //display answers
+        // answers.displayAnswers(answers.numberOfStage);
+        // when the button is clicked 
+        // checking of the user answer
+        // is run then display the result 
+        // of checking
+        button.addEventListener('click', answers.checkAnswer.bind(answers));
+        buttonHalf.addEventListener('click', answers.halfOfTrue.bind(answers));
+    }
+    catch(e)
+        {console.log(e)}
 
-    const question = new Questions();
-    const prompts = new Prompts; 
-    const answers = new Answers();
+
     
-    //display questions
-    question.displayQuestion();
-    //display answers
-    answers.displayAnswers(answers.numberOfStage);
-    // when the button is clicked 
-    // checking of the user answer
-    // is run then display the result 
-    // of checking
-    button.addEventListener('click', answers.checkAnswer.bind(answers));
-    buttonHalf.addEventListener('click', answers.halfOfTrue.bind(answers));
 }
 
 
