@@ -227,7 +227,13 @@ class Prompts extends Answers {
 
 const init = () => {
     
+<<<<<<< HEAD
    
+=======
+    const button = document.getElementsByClassName('.choose-btn');
+    const buttonHalf = document.querySelector('.half_to_half');
+    console.log(button)
+>>>>>>> cc92f1ad8706a6f1b9937fd6c02713e7d71ca21e
     
     
     try {
@@ -257,6 +263,22 @@ const init = () => {
 
 
     
+<<<<<<< HEAD
+=======
+    //display questions
+    question.displayQuestion();
+    //display answers
+    answers.displayAnswers(answers.numberOfStage);
+    // when the button is clicked 
+    // checking of the user answer
+    // is run then display the result 
+    // of checking
+    // button.addEventListener('click', answers.checkAnswer.bind(answers));
+    buttonHalf.addEventListener('click', answers.halfOfTrue.bind(answers));
+    const a = /abc/
+   
+    console.log(typeof(a+1))
+>>>>>>> cc92f1ad8706a6f1b9937fd6c02713e7d71ca21e
 }
 
 

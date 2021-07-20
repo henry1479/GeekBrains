@@ -1,7 +1,11 @@
 
 import './App.css';
 
-function App(props) {
+function Message(props) {
+  // paragraph with a text of a message
+        // name changes depending of props.name or props.lastName
+        // CSS changes depending of contsisting of props.name 
+        // adding the classes - 'message' or 'message-red'
   return (
     <div className="App">
       <header className="App-header">
@@ -11,4 +15,7 @@ function App(props) {
   );
 }
 
-export default App;
+
+
+export default Message;
+
